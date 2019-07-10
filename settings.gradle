@@ -4,3 +4,4 @@ pluginManagement {
     }
 }
 rootProject.name = 'demo'
+include 'event'

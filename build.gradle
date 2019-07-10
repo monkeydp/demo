@@ -21,7 +21,13 @@ subprojects { project ->
     }
 
     dependencies {
+        // spring-boot-starter
         implementation 'org.springframework.boot:spring-boot-starter'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        // lombok
+        annotationProcessor 'org.projectlombok:lombok'
+        implementation 'org.projectlombok:lombok'
+        // jetbrains annotations
+        implementation "org.jetbrains:annotations:$jetbrainsAnnotationsVersion"
     }
 }
