@@ -99,7 +99,7 @@ def includeModules(List<Module> modules) {
 
 def eventModule = Module.of("event")
 def thriftModule = Module.of("thrift")
-        .appendSubmodules("server", "client")
+        .appendSubmodules("server", "client", "protocol")
 
 def modules = [
         eventModule,
