@@ -1,3 +1,8 @@
+import org.gradle.internal.os.OperatingSystem
+
+import static org.gradle.internal.os.OperatingSystem.LINUX
+import static org.gradle.internal.os.OperatingSystem.WINDOWS
+
 plugins {
     id "org.jruyi.thrift" version "0.4.1"
 }
@@ -7,5 +12,23 @@ dependencies {
 }
 
 compileThrift {
-    thriftExecutable "$projectDir/src/main/thrift-0.12.0.exe"
+    thriftExecutable thriftExecutorPath()
+}
+
+String thriftExecutorPath() {
+    def system = OperatingSystem.current()
+    def dirPath = "$projectDir/executor/"
+    def relativePath;
+    switch (system) {
+        case WINDOWS:
+            relativePath = "windows/thrift-0.12.0.exe"
+            break;
+        case LINUX:
+            // TODO 待实现
+            relativePath = "linux/xxx"
+            break;
+        default:
+            throw new RuntimeException(String.format("不支持操作系统: %s", system.getFamilyName()));
+    }
+    return dirPath + relativePath;
 }
