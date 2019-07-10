@@ -6,6 +6,9 @@ plugins {
 }
 
 def depVersion = [
+    groovy: [
+        all: "2.5.7"
+    ],
     daios: [
         common: "1.0.0-SNAPSHOT"
     ],
