@@ -5,27 +5,43 @@ package com.monkeydp.demo
  */
 enum ModuleEnum {
 
-    EVENT(Module.of("event")),
-    THRIFT(
-        Module.of("thrift")
-            .appendSubmodules("server", "client", "protocol")
-    ),
+    EVENT("event"),
+    THRIFT("thrift"),
+    THRIFT_SERVER("server", THRIFT),
+    THRIFT_CLIENT("client", THRIFT),
+    THRIFT_PROTOCOL("protocol", THRIFT),
 
     private Module module
 
-    ModuleEnum(Module module) {
-        this.module = module
+    ModuleEnum(String moduleName) {
+        this.module = Module.of(moduleName)
+    }
+
+    ModuleEnum(String moduleName, ModuleEnum supermoduleEnum) {
+        Module supermodule = supermoduleEnum.getModule()
+        this.module = Module.of(moduleName, supermodule)
+        supermodule.appendSubmodule(this.module)
     }
 
     public Module getModule() {
         return this.module
     }
 
-    public static List<Module> getModules() {
+    public static List<Module> getFirstLayerModules() {
         def modules = new ArrayList()
         Arrays.asList(ModuleEnum.values()).each { moduleEnum ->
-            modules.add(moduleEnum.getModule())
+            if (isFirstLayer(moduleEnum)) {
+                modules.add(moduleEnum.getModule())
+            }
         }
         return modules
+    }
+
+    private static isFirstLayer(ModuleEnum moduleEnum) {
+        return moduleEnum.getModule().getSupermodule() == null;
+    }
+
+    public String getProjectPath() {
+        return this.getModule().getProjectPath()
     }
 }

@@ -1,4 +1,6 @@
+import static com.monkeydp.demo.ModuleEnum.THRIFT_PROTOCOL
+
 dependencies {
     implementation 'info.developerblog.spring.thrift:spring-thrift-starter:+'
-    implementation project(':thrift:thrift-protocol')
+    implementation project(THRIFT_PROTOCOL.getProjectPath())
 }

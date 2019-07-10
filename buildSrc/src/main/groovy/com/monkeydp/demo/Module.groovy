@@ -9,34 +9,40 @@ class Module {
     // 子模块列表
     private List<Module> submodules = new ArrayList<>()
     // 父模块, null 表示无父模块
-    private Module parent
+    private Module supermodule
 
     private Module(String name) {
         this.name = name
-        this.parent = null
+        this.supermodule = null
     }
 
-    private Module(String name, Module parent) {
+    private Module(String name, Module supermodule) {
         this.name = name
-        this.parent = parent
+        this.supermodule = supermodule
     }
 
     static Module of(String name) {
         return new Module(name)
     }
 
-    static Module of(String name, Module parent) {
-        return new Module(name, parent)
+    static Module of(String name, Module supermodule) {
+        return new Module(name, supermodule)
     }
 
-    Module appendSubmodules(String... names) {
-        for (int i = 0; i < names.length; i++) {
-            this.submodules.add(Module.of(names[i], this))
-        }
+//    Module appendSubmodules(String... names) {
+//        for (int i = 0; i < names.length; i++) {
+//            this.submodules.add(Module.of(names[i], this))
+//        }
+//        return this
+//    }
+
+    Module appendSubmodule(Module submodule) {
+        this.submodules.add(submodule)
         return this
     }
 
-    String getFullName(){
+    // 模块完整名称
+    String getFullName() {
         String.join(Symbol.HYPHEN, allNames())
     }
 
@@ -46,15 +52,24 @@ class Module {
         return COLON + String.join(COLON, names)
     }
 
+    // 项目路径
+    String getProjectPath() {
+        def builder = new StringBuilder()
+        builder.append(this.supermodule.getPath())
+            .append(COLON)
+            .append(this.getFullName())
+        return builder.toString()
+    }
+
     // 递归获取父模块到子模块的名称列表
     private List<String> allNames() {
         def names = new ArrayList<String>()
         names.add(this.getName())
 
-        def parent = this.parent
-        while (parent != null) {
-            names.add(parent.getName())
-            parent = parent.getParent()
+        def supermodule = this.supermodule
+        while (supermodule != null) {
+            names.add(supermodule.getName())
+            supermodule = supermodule.getSupermodule()
         }
 
         Collections.reverse(names)
@@ -67,8 +82,8 @@ class Module {
         return name
     }
 
-    Module getParent() {
-        return parent
+    Module getSupermodule() {
+        return supermodule
     }
 
     List<Module> getSubmodules() {
