@@ -9,7 +9,6 @@ rootProject.name = "demo"
 class Module {
 
     private final static String COLON = ":"
-    private final static String DASH = "–"
 
     // 模块名称
     private String name
@@ -49,12 +48,6 @@ class Module {
         return COLON + String.join(COLON, names)
     }
 
-    // 模块完整名称
-    String getFullName() {
-        def names = this.allNames()
-        return String.join(DASH, names)
-    }
-
     // 递归获取父模块到子模块的名称列表
     private List<String> allNames() {
         def names = new ArrayList<String>()
@@ -90,20 +83,18 @@ def includeModules(List<Module> modules) {
         return
     }
     modules.each { module ->
-        def path = module.getPath()
-        include path
-        project(path).name = module.getFullName()
+        include module.getPath()
         includeModules(module.getSubmodules())
     }
 }
 
 def eventModule = Module.of("event")
 def thriftModule = Module.of("thrift")
-        .appendSubmodules("server", "client", "protocol")
+    .appendSubmodules("server", "client", "protocol")
 
 def modules = [
-        eventModule,
-        thriftModule
+    eventModule,
+    thriftModule
 ]
 
 includeModules(modules)
