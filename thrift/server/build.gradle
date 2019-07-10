@@ -1,0 +1,4 @@
+dependencies {
+    implementation 'info.developerblog.spring.thrift:spring-thrift-starter:+'
+    implementation project(':thrift:thrift-protocol')
+}

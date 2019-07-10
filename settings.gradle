@@ -9,6 +9,7 @@ def includeModules(List<Module> modules) {
     }
     modules.each { module ->
         include module.getPath()
+        project(module.getPath()).name = module.getFullName()
         includeModules(module.getSubmodules())
     }
 }

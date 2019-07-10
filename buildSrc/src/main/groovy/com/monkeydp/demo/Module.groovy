@@ -36,6 +36,10 @@ class Module {
         return this
     }
 
+    String getFullName(){
+        String.join(Symbol.HYPHEN, allNames())
+    }
+
     // 模块路径
     String getPath() {
         def names = this.allNames()
