@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @Data
 @Builder
-public class User {
+class User {
     @NotNull
     private String account;
     @NotNull

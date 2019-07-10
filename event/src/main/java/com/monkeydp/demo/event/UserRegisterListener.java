@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @date 2019/7/10
  */
 @Component
-public class UserRegisterListener {
+class UserRegisterListener {
     @EventListener
     public void register(UserRegisterEvent event) {
         User user = event.getUser();

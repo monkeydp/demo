@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author iPotato
  * @date 2019/7/10
  */
-public class UserServiceTest extends EventApplicationTest {
+public class UserServiceTest extends BaseTest {
 
     @Autowired
     private UserService userService;

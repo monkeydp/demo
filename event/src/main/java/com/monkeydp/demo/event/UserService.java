@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
  * @date 2019/7/10
  */
 @Service
-public class UserService {
+class UserService {
 
     @NotNull
     private final ApplicationContext applicationContext;
 
     @Autowired
-    public UserService(ApplicationContext applicationContext) {
+    UserService(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 

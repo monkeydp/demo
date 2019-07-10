@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationEvent;
  * @date 2019/7/10
  */
 @Getter
-public class UserRegisterEvent extends ApplicationEvent {
+class UserRegisterEvent extends ApplicationEvent {
 
     private static final long serialVersionUID = 7899368757606053895L;
 
