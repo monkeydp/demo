@@ -1,4 +1,6 @@
-greeting-service:                     # service name
+server:
+  port: 8081
+tGreetingService:                     # service name
   endpoint: http://localhost:8080/api # direct endpoint
   ribbon:                             # manually ribbon
     listOfServers: localhost:8080

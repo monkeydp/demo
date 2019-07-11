@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class GreetingService {
 
-    @ThriftClient(serviceId = "greeting-service", path = "/api")
+    @ThriftClient
     TGreetingService.Client client;
 
     @SneakyThrows
-    public String getGreeting(String firstName, String lastName) {
-        return client.greet(new TName(firstName, lastName));
+    public String getGreeting(TName name) {
+        return client.greet(name);
     }
 }

@@ -1,8 +1,8 @@
 package com.monkeydp.demo.thrift.client;
 
+import com.monkeydp.demo.thrift.protocol.TName;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
  * @author iPotato
  * @date 2019/7/11
  */
-@SpringBootTest
 public class GreetingServiceTest extends BaseTest {
 
     @Autowired
@@ -20,10 +19,9 @@ public class GreetingServiceTest extends BaseTest {
 
     @Test
     public void getGreetingTest() {
-        String firstName = "John";
-        String secondName = "Smith";
-        String str = greetingService.getGreeting(firstName, secondName);
-        String expectedStr = String.format("Hello %s %s", firstName, secondName);
+        TName name = new TName("John", "Smith");
+        String str = greetingService.getGreeting(name);
+        String expectedStr = String.format("Hello %s %s", name.getFirstName(), name.getSecondName());
         assertEquals(expectedStr, str);
     }
 }
