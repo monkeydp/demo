@@ -1,6 +1,6 @@
-package com.monkeydp.demo.thrift.server;
+package com.monkeydp.demo.thrift.server.greeting;
 
-import com.monkeydp.demo.thrift.protocol.TName;
+import com.monkeydp.demo.thrift.protocol.greeting.TName;
 
 /**
  * @author iPotato

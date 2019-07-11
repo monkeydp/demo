@@ -1,7 +1,8 @@
-package com.monkeydp.demo.thrift.client;
+package com.monkeydp.demo.thrift.server.greeting;
 
-import com.monkeydp.demo.thrift.protocol.TEvent;
-import com.monkeydp.demo.thrift.protocol.TEventService;
+import com.monkeydp.demo.thrift.protocol.greeting.TGreetingService;
+import com.monkeydp.demo.thrift.protocol.greeting.TName;
+import com.monkeydp.demo.thrift.server.BaseTest;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.protocol.TProtocolFactory;
@@ -15,18 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
-import static com.monkeydp.demo.thrift.protocol.TEventType.NOTIFY;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 /**
  * @author iPotato
  * @date 2019/7/11
  */
-@SpringBootTest(
-        classes = {ThriftClientApplication.class},
-        webEnvironment = RANDOM_PORT
-)
-public class EventControllerTest extends BaseTest {
+@SpringBootTest(webEnvironment = RANDOM_PORT)
+public class GreetingControllerTest extends BaseTest {
 
     @LocalServerPort
     private int port;
@@ -34,21 +31,21 @@ public class EventControllerTest extends BaseTest {
     @Autowired
     private TProtocolFactory protocolFactory;
 
-    private TEventService.Iface client;
+    private TGreetingService.Iface client;
 
     @Before
     public void before() throws TTransportException {
-        String url = String.format("http://localhost:%s/event", port);
+        String url = String.format("http://localhost:%s/greeting", port);
         TTransport transport = new THttpClient(url);
         TProtocol protocol = protocolFactory.getProtocol(transport);
-        client = new TEventService.Client(protocol);
+        client = new TGreetingService.Client(protocol);
     }
 
     @Test
     public void greetTest() throws TException {
-        TEvent event = new TEvent(NOTIFY, "来自服务端的通知");
-        String str = client.publish(event);
-        String expectedStr = EventUtil.receive(event);
+        TName name = new TName("John", "Smith");
+        String str = client.greet(name);
+        String expectedStr = GreetingUtil.hello(name);
         Assert.assertEquals(expectedStr, str);
     }
 }

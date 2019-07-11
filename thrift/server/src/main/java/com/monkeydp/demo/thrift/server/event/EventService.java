@@ -1,7 +1,7 @@
-package com.monkeydp.demo.thrift.server;
+package com.monkeydp.demo.thrift.server.event;
 
-import com.monkeydp.demo.thrift.protocol.TEvent;
-import com.monkeydp.demo.thrift.protocol.TEventService;
+import com.monkeydp.demo.thrift.protocol.event.TEvent;
+import com.monkeydp.demo.thrift.protocol.event.TEventService;
 import info.developerblog.spring.thrift.annotation.ThriftClient;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;

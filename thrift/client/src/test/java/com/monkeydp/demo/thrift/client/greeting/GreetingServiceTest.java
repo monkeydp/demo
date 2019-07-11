@@ -1,6 +1,7 @@
-package com.monkeydp.demo.thrift.client;
+package com.monkeydp.demo.thrift.client.greeting;
 
-import com.monkeydp.demo.thrift.protocol.TName;
+import com.monkeydp.demo.thrift.client.BaseTest;
+import com.monkeydp.demo.thrift.protocol.greeting.TName;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

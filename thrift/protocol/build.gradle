@@ -8,8 +8,6 @@ plugins {
     id "org.jruyi.thrift" version "0.4.1"
 }
 
-idea.module.sourceDirs += file("src/main/thrift")
-
 dependencies {
     implementation "org.apache.thrift:libthrift:${DepVersion.Apache.Thrift.LIBTHRIFT}"
 }

@@ -1,7 +1,7 @@
-package com.monkeydp.demo.thrift.client;
+package com.monkeydp.demo.thrift.client.event;
 
-import com.monkeydp.demo.thrift.protocol.TEvent;
-import com.monkeydp.demo.thrift.protocol.TEventService;
+import com.monkeydp.demo.thrift.protocol.event.TEvent;
+import com.monkeydp.demo.thrift.protocol.event.TEventService;
 import lombok.extern.slf4j.Slf4j;
 import ru.trylogic.spring.boot.thrift.annotation.ThriftController;
 

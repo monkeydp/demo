@@ -1,12 +1,12 @@
-import com.monkeydp.demo.thrift.protocol.TEvent;
-import com.monkeydp.demo.thrift.server.EventService;
-import com.monkeydp.demo.thrift.server.ThriftServerApplication;
+package com.monkeydp.demo.thrift.server.event;
+
+import com.monkeydp.demo.thrift.protocol.event.TEvent;
+import com.monkeydp.demo.thrift.server.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import static com.monkeydp.demo.thrift.protocol.TEventType.NOTIFY;
+import static com.monkeydp.demo.thrift.protocol.event.TEventType.NOTIFY;
 
 /**
  * Start thrift client before run test
@@ -14,7 +14,6 @@ import static com.monkeydp.demo.thrift.protocol.TEventType.NOTIFY;
  * @author iPotato
  * @date 2019/7/11
  */
-@SpringBootTest(classes = ThriftServerApplication.class)
 public class EventServiceTest extends BaseTest {
 
     @Autowired

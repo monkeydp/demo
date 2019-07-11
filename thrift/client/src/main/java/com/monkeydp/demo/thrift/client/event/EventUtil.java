@@ -1,6 +1,6 @@
-package com.monkeydp.demo.thrift.client;
+package com.monkeydp.demo.thrift.client.event;
 
-import com.monkeydp.demo.thrift.protocol.TEvent;
+import com.monkeydp.demo.thrift.protocol.event.TEvent;
 
 /**
  * @author iPotato

@@ -1,4 +1,4 @@
-namespace * com.monkeydp.demo.thrift.protocol
+namespace * com.monkeydp.demo.thrift.protocol.greeting
 
 enum TStatus {
     MR,

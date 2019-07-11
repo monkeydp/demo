@@ -1,7 +1,8 @@
-import com.monkeydp.demo.thrift.protocol.TGreetingService;
-import com.monkeydp.demo.thrift.protocol.TName;
-import com.monkeydp.demo.thrift.server.GreetingUtil;
-import com.monkeydp.demo.thrift.server.ThriftServerApplication;
+package com.monkeydp.demo.thrift.client.event;
+
+import com.monkeydp.demo.thrift.client.BaseTest;
+import com.monkeydp.demo.thrift.protocol.event.TEvent;
+import com.monkeydp.demo.thrift.protocol.event.TEventService;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.protocol.TProtocolFactory;
@@ -15,17 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
+import static com.monkeydp.demo.thrift.protocol.event.TEventType.NOTIFY;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 /**
  * @author iPotato
  * @date 2019/7/11
  */
-@SpringBootTest(
-        classes = {ThriftServerApplication.class},
-        webEnvironment = RANDOM_PORT
-)
-public class GreetingControllerTest extends BaseTest {
+@SpringBootTest(webEnvironment = RANDOM_PORT)
+public class EventControllerTest extends BaseTest {
 
     @LocalServerPort
     private int port;
@@ -33,21 +32,21 @@ public class GreetingControllerTest extends BaseTest {
     @Autowired
     private TProtocolFactory protocolFactory;
 
-    private TGreetingService.Iface client;
+    private TEventService.Iface client;
 
     @Before
     public void before() throws TTransportException {
-        String url = String.format("http://localhost:%s/api", port);
+        String url = String.format("http://localhost:%s/event", port);
         TTransport transport = new THttpClient(url);
         TProtocol protocol = protocolFactory.getProtocol(transport);
-        client = new TGreetingService.Client(protocol);
+        client = new TEventService.Client(protocol);
     }
 
     @Test
     public void greetTest() throws TException {
-        TName name = new TName("John", "Smith");
-        String str = client.greet(name);
-        String expectedStr = GreetingUtil.hello(name);
+        TEvent event = new TEvent(NOTIFY, "来自服务端的通知");
+        String str = client.publish(event);
+        String expectedStr = EventUtil.receive(event);
         Assert.assertEquals(expectedStr, str);
     }
 }
