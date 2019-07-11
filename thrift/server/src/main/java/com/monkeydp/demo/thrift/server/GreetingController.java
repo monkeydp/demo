@@ -12,10 +12,6 @@ import ru.trylogic.spring.boot.thrift.annotation.ThriftController;
 public class GreetingController implements TGreetingService.Iface {
     @Override
     public String greet(TName name) {
-        return String.format(
-                "Hello, %s %s!",
-                name.getFirstName(),
-                name.getSecondName()
-        );
+        return GreetingUtil.hello(name);
     }
 }

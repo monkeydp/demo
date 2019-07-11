@@ -4,12 +4,9 @@ import com.monkeydp.demo.ModuleEnum
 rootProject.name = "demo"
 
 def includeModules(List<Module> modules) {
-    if (modules.isEmpty()) {
-        return
-    }
     modules.each { module ->
         include module.getPath()
-        project(module.getPath()).name = module.getFullName()
+        project(module.getPath()).name = module.getProjectName()
         includeModules(module.getSubmodules())
     }
 }

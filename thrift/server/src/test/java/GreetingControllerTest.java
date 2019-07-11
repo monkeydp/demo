@@ -1,5 +1,6 @@
 import com.monkeydp.demo.thrift.protocol.TGreetingService;
 import com.monkeydp.demo.thrift.protocol.TName;
+import com.monkeydp.demo.thrift.server.GreetingUtil;
 import com.monkeydp.demo.thrift.server.ThriftServerApplication;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TProtocol;
@@ -7,6 +8,7 @@ import org.apache.thrift.protocol.TProtocolFactory;
 import org.apache.thrift.transport.THttpClient;
 import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TTransportException;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +47,7 @@ public class GreetingControllerTest extends BaseTest {
     public void greetTest() throws TException {
         TName name = new TName("John", "Smith");
         String str = client.greet(name);
+        String expectedStr = GreetingUtil.hello(name);
+        Assert.assertEquals(expectedStr, str);
     }
 }

@@ -34,9 +34,9 @@ class Module {
         return this
     }
 
-    // 模块完整名称
-    String getFullName() {
-        String.join(Symbol.HYPHEN, allNames())
+    // 项目名称
+    String getProjectName() {
+        return String.join(Symbol.HYPHEN, allNames())
     }
 
     // 模块路径
@@ -50,7 +50,7 @@ class Module {
         def builder = new StringBuilder()
         builder.append(this.supermodule.getPath())
             .append(COLON)
-            .append(this.getFullName())
+            .append(this.getProjectName())
         return builder.toString()
     }
 
