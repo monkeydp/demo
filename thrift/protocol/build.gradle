@@ -14,6 +14,7 @@ dependencies {
 
 compileThrift {
     thriftExecutable thriftExecutorPath()
+    generator "java", "private-members"
 }
 
 String thriftExecutorPath() {
