@@ -1,21 +1,11 @@
+import com.monkeydp.demo.DepVersion
+
 plugins {
     id "java"
     id "idea"
     id "org.springframework.boot" version "2.1.6.RELEASE"
     id "io.spring.dependency-management" version "1.0.7.RELEASE"
 }
-
-def depVersion = [
-    groovy: [
-        all: "2.5.7"
-    ],
-    daios: [
-        common: "1.0.0-SNAPSHOT"
-    ],
-    jetbrains: [
-        annotations: "17.0.0"
-    ]
-]
 
 subprojects { project ->
 
@@ -36,11 +26,11 @@ subprojects { project ->
 
     dependencies {
         // daios
-        implementation "cn.bintools.daios:common:${depVersion.daios.common}"
+        implementation "cn.bintools.daios:common:${DepVersion.Bintools.Daios.COMMON}"
         // lombok
         annotationProcessor "org.projectlombok:lombok"
         implementation "org.projectlombok:lombok"
         // jetbrains
-        implementation "org.jetbrains:annotations:${depVersion.jetbrains.annotations}"
+        implementation "org.jetbrains:annotations:${DepVersion.Jetbrains.ANNOTATIONS}"
     }
 }

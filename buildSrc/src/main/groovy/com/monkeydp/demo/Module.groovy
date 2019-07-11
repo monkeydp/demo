@@ -29,13 +29,6 @@ class Module {
         return new Module(name, supermodule)
     }
 
-//    Module appendSubmodules(String... names) {
-//        for (int i = 0; i < names.length; i++) {
-//            this.submodules.add(Module.of(names[i], this))
-//        }
-//        return this
-//    }
-
     Module appendSubmodule(Module submodule) {
         this.submodules.add(submodule)
         return this
