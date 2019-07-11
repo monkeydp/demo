@@ -35,9 +35,6 @@ subprojects { project ->
     }
 
     dependencies {
-        // spring-boot
-        implementation "org.springframework.boot:spring-boot-starter"
-        testImplementation "org.springframework.boot:spring-boot-starter-test"
         // daios
         implementation "cn.bintools.daios:common:${depVersion.daios.common}"
         // lombok
