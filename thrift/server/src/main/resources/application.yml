@@ -1,9 +1,10 @@
-tEventService:                          # service name
-  endpoint: http://localhost:8081/event # direct endpoint
-  ribbon:                               # manually ribbon
-    listOfServers: localhost:8081
-  path: /service                        # general path
-  connectTimeout: 1000                  # default=1000
-  readTimeout: 10000                    # default=30000
+app.thrift-client.url: http://localhost:8081/
+tEventService:                            # service name
+  endpoint: ${app.thrift-client.url}event # direct endpoint
+  ribbon:                                 # manually ribbon
+    listOfServers: ${app.thrift-client.url}
+  path: /service                          # general path
+  connectTimeout: 1000                    # default=1000
+  readTimeout: 10000                      # default=30000
 
-thrift.client.max.threads: 10           # default=8
+thrift.client.max.threads: 10             # default=8

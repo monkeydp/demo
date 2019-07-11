@@ -26,7 +26,7 @@ String thriftExecutorPath() {
             relativePath = "windows/thrift-0.12.0.exe"
             break;
         case LINUX:
-            // TODO 待实现
+            // TODO pending
             relativePath = "linux/xxx"
             break;
         default:

@@ -1,11 +1,13 @@
 server:
   port: 8081
-tGreetingService:                           # service name
-  endpoint: http://localhost:8080/greeting  # direct endpoint
-  ribbon:                                   # manually ribbon
-    listOfServers: localhost:8080
-  path: /service                            # general path
-  connectTimeout: 1000                      # default=1000
-  readTimeout: 10000                        # default=30000
 
-thrift.client.max.threads: 10               # default=8
+app.thrift-server.url: http://localhost:8080/
+tGreetingService:                             # service name
+  endpoint: ${app.thrift-server.url}greeting  # direct endpoint
+  ribbon:                                     # manually ribbon
+    listOfServers: ${app.thrift-server.url}
+  path: /service                              # general path
+  connectTimeout: 1000                        # default=1000
+  readTimeout: 10000                          # default=30000
+
+thrift.client.max.threads: 10                 # default=8
