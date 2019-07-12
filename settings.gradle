@@ -6,7 +6,6 @@ rootProject.name = "demo"
 def includeModules(List<Module> modules) {
     modules.each { module ->
         include module.getPath()
-        project(module.getPath()).name = module.getProjectName()
         includeModules(module.getSubmodules())
     }
 }

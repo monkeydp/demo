@@ -36,7 +36,7 @@ class Module {
 
     // 项目名称
     String getProjectName() {
-        return String.join(Symbol.HYPHEN, allNames())
+        return this.getName()
     }
 
     // 模块路径

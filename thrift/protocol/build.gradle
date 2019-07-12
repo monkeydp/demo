@@ -8,6 +8,8 @@ plugins {
     id "org.jruyi.thrift" version "0.4.1"
 }
 
+group = "com.monkeydp.demo.thrift"
+
 dependencies {
     implementation "org.apache.thrift:libthrift:${DepVersion.Apache.Thrift.LIBTHRIFT}"
 }
