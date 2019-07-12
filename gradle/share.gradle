@@ -1,0 +1,26 @@
+// Share variable and method between Gradle buildSrc and rest of project
+
+ext {
+    depVersion = this.&depVersion
+}
+
+def depVersion() {
+    [
+        bintools: [
+            daios: [
+                common: "1.0.0-SNAPSHOT"
+            ],
+        ],
+        projectlombok: [
+            lombok: "1.18.8"
+        ],
+        jetbrains: [
+            annotations: "17.0.0"
+        ],
+        apache: [
+            thrift: [
+                libthrift: "0.12.0"
+            ]
+        ]
+    ]
+}

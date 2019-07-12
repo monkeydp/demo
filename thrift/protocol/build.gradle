@@ -1,4 +1,3 @@
-import com.monkeydp.demo.DepVersion
 import org.gradle.internal.os.OperatingSystem
 
 import static org.gradle.internal.os.OperatingSystem.LINUX
@@ -9,7 +8,7 @@ plugins {
 }
 
 dependencies {
-    implementation "org.apache.thrift:libthrift:${DepVersion.Apache.Thrift.LIBTHRIFT}"
+    implementation "org.apache.thrift:libthrift:${depVersion().apache.thrift.libthrift}"
 }
 
 compileThrift {

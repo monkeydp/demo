@@ -1,1 +1,15 @@
+apply from: "../gradle/share.gradle"
+
 group = "com.monkeydp.demo"
+
+dependencies {
+    // daios
+    implementation("cn.bintools.daios:common:${depVersion().bintools.daios.common}") {
+        transitive = false
+    }
+    // lombok
+    annotationProcessor "org.projectlombok:lombok:${depVersion().projectlombok.lombok}"
+    implementation "org.projectlombok:lombok:${depVersion().projectlombok.lombok}"
+    // jetbrains
+    implementation "org.jetbrains:annotations:${depVersion().jetbrains.annotations}"
+}
