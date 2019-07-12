@@ -6,6 +6,7 @@ package com.monkeydp.demo
 enum ModuleEnum {
 
     EVENT("event"),
+    THYMELEAF("thymeleaf"),
     THRIFT("thrift"),
     THRIFT_SERVER("server", THRIFT),
     THRIFT_CLIENT("client", THRIFT),
