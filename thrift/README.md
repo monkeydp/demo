@@ -14,9 +14,19 @@ Gradle → thrift-protocol → Tasks → other → compileThrift
 
 ---
 
-File `.thrift` in `thrift-protocol/src/main/thrift`
+File `.thrift` in 
 
-Generated code file in `thrift-protocol/build/generated-sources/thrift/gen-java`
+`thrift-protocol/src/main/thrift`
+
+Generated code file in **gen-java** 
+
+`thrift-protocol/build/generated-sources/thrift/gen-java`
+
+___
+
+Refresh gradle to recognize **gen-java** as source dir after **compileThrift**
+
+___
 
 > Now, only support to run task **compileThrift** in windows
 >
