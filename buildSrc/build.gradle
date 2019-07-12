@@ -2,6 +2,11 @@ apply from: "../gradle/share.gradle"
 
 group = "com.monkeydp.demo"
 
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
 dependencies {
     // daios
     implementation("cn.bintools.daios:common:${depVersion().bintools.daios.common}") {
