@@ -1,4 +1,5 @@
 import com.monkeydp.demo.DepVersion
+import com.monkeydp.demo.ProjectUtil
 
 plugins {
     id "java"
@@ -11,6 +12,10 @@ group = "com.monkeydp"
 version = "0.0.1-SNAPSHOT"
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+allprojects { project ->
+    group = ProjectUtil.buildGroup(project)
+}
 
 subprojects { project ->
 
