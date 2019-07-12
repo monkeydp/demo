@@ -4,11 +4,18 @@ import static com.monkeydp.demo.Symbol.COLON
 
 class Module {
 
-    // 模块名称
+    /**
+     * 模块名称
+     */
     private String name
-    // 子模块列表
+    /**
+     * 子模块列表
+     */
     private List<Module> submodules = new ArrayList<>()
-    // 父模块, null 表示无父模块
+    /**
+     * 父模块
+     * null 表示无父模块
+     */
     private Module supermodule
 
     private Module(String name) {
@@ -34,18 +41,27 @@ class Module {
         return this
     }
 
-    // 项目名称
+    /**
+     * 项目名称
+     * @return
+     */
     String getProjectName() {
         return this.getName()
     }
 
-    // 模块路径
+    /**
+     * 模块路径
+     * @return
+     */
     String getPath() {
         def names = this.allNames()
         return COLON + String.join(COLON, names)
     }
 
-    // 项目路径
+    /**
+     * 项目路径
+     * @return
+     */
     String getProjectPath() {
         def builder = new StringBuilder()
         builder.append(this.supermodule.getPath())
@@ -54,7 +70,10 @@ class Module {
         return builder.toString()
     }
 
-    // 递归获取父模块到子模块的名称列表
+    /**
+     * 递归获取父模块到子模块的名称列表
+     * @return
+     */
     private List<String> allNames() {
         def names = new ArrayList<String>()
         names.add(this.getName())
