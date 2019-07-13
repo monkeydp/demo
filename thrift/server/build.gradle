@@ -1,12 +1,10 @@
 import static com.monkeydp.demo.ModuleEnum.THRIFT_PROTOCOL
 
-group = "com.monkeydp.demo.thrift"
-
 dependencies {
     // spring-boot
     implementation "org.springframework.boot:spring-boot-starter"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     // thrift
-    implementation 'info.developerblog.spring.thrift:spring-thrift-starter:+'
     implementation project(THRIFT_PROTOCOL.getProjectPath())
+    implementation 'info.developerblog.spring.thrift:spring-thrift-starter:+'
 }
