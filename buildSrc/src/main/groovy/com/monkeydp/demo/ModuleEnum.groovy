@@ -6,6 +6,10 @@ package com.monkeydp.demo
 enum ModuleEnum {
 
     EVENT("event"),
+    PROTOBUF("protobuf"),
+    PROTOBUF_SERVER("server", PROTOBUF),
+    PROTOBUF_CLIENT("client", PROTOBUF),
+    PROTOBUF_PROTOCOL("protocol", PROTOBUF),
     THRIFT("thrift"),
     THRIFT_SERVER("server", THRIFT),
     THRIFT_CLIENT("client", THRIFT),
