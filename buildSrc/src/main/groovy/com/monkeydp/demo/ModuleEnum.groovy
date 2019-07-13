@@ -6,11 +6,14 @@ package com.monkeydp.demo
 enum ModuleEnum {
 
     EVENT("event"),
-    THYMELEAF("thymeleaf"),
     THRIFT("thrift"),
     THRIFT_SERVER("server", THRIFT),
     THRIFT_CLIENT("client", THRIFT),
     THRIFT_PROTOCOL("protocol", THRIFT),
+    THYMELEAF("thymeleaf"),
+    WEBSOCKET("websocket"),
+    WEBSOCKET_SERVER("server", WEBSOCKET),
+    WEBSOCKET_CLIENT("client", WEBSOCKET),
 
     private Module module
 
