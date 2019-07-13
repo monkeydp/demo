@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class IndexController {
     /**
-     * http://localhost:8080?name=iPotato
+     * http://localhost:8080/?name=iPotato
      *
      * @param model
      * @param name
      * @return
      */
     @GetMapping("/")
-    public String index(Model model, @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+    public String index(Model model, @RequestParam(value = "name", required = false, defaultValue = "Thymeleaf") String name) {
         model.addAttribute("name", name);
         // index.html
         return "index";
