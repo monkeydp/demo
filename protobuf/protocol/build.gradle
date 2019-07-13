@@ -17,8 +17,7 @@ protobuf {
 
 dependencies {
     // spring-boot
-    implementation "org.springframework.boot:spring-boot-starter"
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    implementation "org.springframework:spring-core"
     // protobuf
     implementation "com.google.protobuf:protobuf-java:3.8.0"
 }
