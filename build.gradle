@@ -30,13 +30,13 @@ subprojects { project ->
 
     dependencies {
         // daios
-        implementation("cn.bintools.daios:common:${depVersion().bintools.daios.common}") {
-            transitive = false
-        }
+        implementation "cn.bintools.daios:common:${depVersion().bintools.daios.common}"
         // lombok
         annotationProcessor "org.projectlombok:lombok"
         implementation "org.projectlombok:lombok"
         // jetbrains
         implementation "org.jetbrains:annotations:${depVersion().jetbrains.annotations}"
+        // guava
+        implementation "com.google.guava:guava:${depVersion().google.guava}"
     }
 }

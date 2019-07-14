@@ -1,0 +1,10 @@
+import static com.monkeydp.demo.ModuleEnum.PROTOBUF_PROTOCOL
+
+dependencies {
+    // spring-boot
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    // protobuf
+    implementation project(PROTOBUF_PROTOCOL.getProjectPath())
+    implementation "com.google.protobuf:protobuf-java:${depVersion().google.protobuf}"
+}
