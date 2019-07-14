@@ -2,8 +2,4 @@ dependencies {
     // spring-boot
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
-    // webjars
-    implementation "org.webjars:webjars-locator-core"
-    implementation "org.webjars:sockjs-client:1.1.2"
-    implementation "org.webjars.bower:stomp-websocket:2.3.4"
 }
