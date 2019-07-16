@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 class UserRegisterListener {
     @EventListener
-    public void register(UserRegisterEvent event) {
+    public void handle(UserRegisterEvent event) {
         User user = event.getUser();
         System.out.println(String.format("@EventListener 注册信息 - 账号: %s, 密码: %s", user.getAccount(), user.getPassword()));
     }

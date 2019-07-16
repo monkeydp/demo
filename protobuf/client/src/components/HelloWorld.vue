@@ -25,7 +25,7 @@
             getPerson() {
                 this.$server.get("/person/get", Person)
                     .then(data => {
-                        this.gotPerson = data;
+                        this.gotPerson = data
                     })
             },
             updatePersonAndGet(person) {
