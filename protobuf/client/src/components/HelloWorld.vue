@@ -17,6 +17,7 @@
     import ProtoRoot from '../generated/js/proto'
 
     let Person = ProtoRoot.com.monkeydp.demo.protobuf.protocol.Person
+
     export default {
         props: {
             msg: String
@@ -29,10 +30,10 @@
         },
         methods: {
             getPerson() {
-                return this.$server.get("/person/get", Person)
+                return this.$server.get("/person/get")
             },
             updatePersonAndGet(person) {
-                return this.$server.put("/person/update-and-get", person, Person)
+                return this.$server.put("/person/update-and-get", person)
             },
             getPersonTest() {
                 this.getPerson()
