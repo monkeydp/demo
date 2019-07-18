@@ -1,14 +1,45 @@
 import Axios from 'axios'
 import ProtoRoot from '../generated/js/proto'
 
-let axios = Axios.create({
+let mediaType = {
+    protobuf: 'application/x-protobuf',
+    json: 'application/json',
+}
+
+let defaultAxiosRequestConfig = {
     headers: {
-        'Content-Type': 'application/x-protobuf'
+        'Content-Type': mediaType.protobuf
     },
     responseType: 'arraybuffer'
-})
+}
+
+let axios = Axios.create(defaultAxiosRequestConfig)
 
 let serverAddress = 'http://localhost:8080/';
+
+function encodeData(reqContentType, data) {
+    if (data == null) return null
+    switch (reqContentType) {
+        case mediaType.json:
+            return encodeJsonData(data)
+            break
+        case mediaType.protobuf:
+            return encodeProtobufData(data)
+            break
+        default:
+            throw Error('未处理响应内容类型: ' + contentType)
+    }
+}
+
+function encodeJsonData(data) {
+    return data
+}
+
+function encodeProtobufData(data) {
+    let unit8Array = data.constructor.encode(data).finish()
+    let arrayBuffer = unit8Array.slice().buffer
+    return arrayBuffer
+}
 
 function loadMessageClass(messageClassName) {
     let arr = messageClassName.split('.')
@@ -19,21 +50,25 @@ function loadMessageClass(messageClassName) {
     return messageClass
 }
 
-function parseData(resp) {
-    let contentType = resp.headers['content-type']
-    switch (contentType) {
-        case 'application/json':
-            return resp.data
+function decodeData(resp) {
+    let respContentType = resp.headers['content-type']
+    switch (respContentType) {
+        case mediaType.json:
+            return decodeJsonData(resp)
             break
-        case 'application/x-protobuf':
-            return parseProtobufData(resp)
+        case mediaType.protobuf:
+            return decodeProtobufData(resp)
             break
         default:
-            throw Error('未处理响应内容类型: ' + contentType)
+            throw Error('未处理响应内容类型: ' + respContentType)
     }
 }
 
-function parseProtobufData(resp) {
+function decodeJsonData(resp) {
+    return resp.data
+}
+
+function decodeProtobufData(resp) {
     let buffer = resp.data
     let messageClassName = resp.headers['x-protobuf-message']
     if (messageClassName == null || messageClassName == '') {
@@ -61,12 +96,13 @@ export default {
             },
             request: function (method, path, data = null) {
                 let url = serverAddress + path;
+                let reqContentType = axios.defaults.headers['Content-Type']
                 return axios.request({
                     url: url,
                     method: method,
-                    data: data,
+                    data: encodeData(reqContentType, data),
                 }).then(resp => {
-                    let data = parseData(resp)
+                    let data = decodeData(resp)
                     return data
                 });
             },

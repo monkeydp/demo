@@ -43,8 +43,7 @@
             },
             updatePersonAndGetTest() {
                 let person = Person.create({name: "iPotato", age: 37})
-                let unit8Array = Person.encode(person).finish()
-                this.updatePersonAndGet(unit8Array.slice().buffer)
+                this.updatePersonAndGet(person)
                     .then(data => {
                         this.updatedPerson = data
                     })
