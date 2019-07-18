@@ -27,7 +27,7 @@ function encodeData(reqContentType, data) {
             return encodeProtobufData(data)
             break
         default:
-            throw Error('未处理响应内容类型: ' + contentType)
+            throw Error('Unprocessed request content type: ' + contentType)
     }
 }
 
@@ -60,7 +60,7 @@ function decodeData(resp) {
             return decodeProtobufData(resp)
             break
         default:
-            throw Error('未处理响应内容类型: ' + respContentType)
+            throw Error('Unprocessed response content type: ' + respContentType)
     }
 }
 
@@ -72,14 +72,14 @@ function decodeProtobufData(resp) {
     let buffer = resp.data
     let messageClassName = resp.headers['x-protobuf-message']
     if (messageClassName == null || messageClassName == '') {
-        throw Error('MessageClassName 不能为空!')
+        throw Error('MessageClassName must not be empty!')
     }
     let messageClass = loadMessageClass(messageClassName)
     if (buffer instanceof ArrayBuffer) {
         let uint8Array = new Uint8Array(buffer)
         return messageClass.decode(uint8Array)
     }
-    throw Error('未处理数据类型: ' + buffer.constructor.name)
+    throw Error('Unprocessed response data type: ' + buffer.constructor.name)
 }
 
 export default {
