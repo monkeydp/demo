@@ -10,7 +10,7 @@ let axios = Axios.create({
 let serverAddress = 'http://localhost:8080/';
 
 export default {
-    install(Vue, options) {
+    install(Vue) {
         Vue.prototype.$server = {
             get: function (path, responseDataType = null) {
                 return this.request("get", path, null, responseDataType);
