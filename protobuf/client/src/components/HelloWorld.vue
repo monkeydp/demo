@@ -1,9 +1,15 @@
 <template>
     <div class="hello">
         <h1>{{ msg }}</h1>
-        <div>Got person: {{gotPerson}}</div>
+        <div>
+            <button @click="getPersonTest">Got person</button>
+            {{gotPerson}}
+        </div>
         <br/>
-        <div>Updated person: {{updatedPerson}}</div>
+        <div>
+            <button @click="updatePersonAndGetTest">Updated person</button>
+            {{updatedPerson}}
+        </div>
     </div>
 </template>
 
@@ -23,27 +29,25 @@
         },
         methods: {
             getPerson() {
-                this.$server.get("/person/get", Person)
-                    .then(data => {
-                        this.gotPerson = data
-                    })
+                return this.$server.get("/person/get", Person)
             },
             updatePersonAndGet(person) {
-                // TODO I/O error
-                this.$server.put("/person/update-and-get", person)
+                return this.$server.put("/person/update-and-get", person, Person)
             },
             getPersonTest() {
                 this.getPerson()
+                    .then(person => {
+                        this.gotPerson = person
+                    })
             },
             updatePersonAndGetTest() {
                 let person = Person.create({name: "iPotato", age: 37})
-                let tmp = Person.encode(person).finish()
-                this.updatePersonAndGet(tmp)
+                let unit8Array = Person.encode(person).finish()
+                this.updatePersonAndGet(unit8Array.slice().buffer)
+                    .then(data => {
+                        this.updatedPerson = data
+                    })
             }
-        },
-        created() {
-            this.getPersonTest()
-            this.updatePersonAndGetTest()
         }
     }
 </script>
