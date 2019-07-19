@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import _ from 'lodash'
 
 class Method {
     static GET = 'get'
@@ -100,13 +101,15 @@ class AxiosDefaultRequestConfig {
         [MediaType.JSON]: {
             headers: {
                 'Content-Type': MediaType.JSON
-            }
+            },
+            withCredentials: true,
         },
         [MediaType.PROTOBUF]: {
             headers: {
                 'Content-Type': MediaType.PROTOBUF
             },
-            responseType: 'arraybuffer'
+            responseType: 'arraybuffer',
+            withCredentials: true,
         }
     }
 
@@ -121,10 +124,8 @@ class DataEncoder {
         switch (mediaType) {
             case MediaType.JSON:
                 return this._encodeJsonData(data)
-                break
             case MediaType.PROTOBUF:
                 return this._encodeProtobufData(data)
-                break
             default:
                 throw new Error('Unprocessed request content type: ' + mediaType)
         }
@@ -153,10 +154,8 @@ class DataDecoder {
         switch (respContentType) {
             case MediaType.JSON:
                 return this._decodeJsonData(resp)
-                break
             case MediaType.PROTOBUF:
                 return this._decodeProtobufData(resp)
-                break
             default:
                 throw new Error('Unprocessed response content type: ' + respContentType)
         }
@@ -191,10 +190,12 @@ class DataDecoder {
 }
 
 class ServerConfig {
+    name
     host
     port
 
     constructor(config) {
+        this.name = config.name
         this.host = config.host
         this.port = config.port
     }

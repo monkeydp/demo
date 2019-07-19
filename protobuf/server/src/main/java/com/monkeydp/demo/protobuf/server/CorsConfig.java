@@ -6,13 +6,15 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
+ * CORS: Cross-origin resource sharing
+ *
  * @author iPotato
  * @date 2019/7/15
  */
 @Configuration
 public class CorsConfig {
     /**
-     * 允许跨域访问
+     * Allow CORS
      *
      * @return
      */
@@ -25,6 +27,7 @@ public class CorsConfig {
                         .allowedHeaders("*")
                         .allowedMethods("*")
                         .allowedOrigins("*")
+                        .allowCredentials(true)
                         .exposedHeaders("X-Protobuf-Message");
             }
         };

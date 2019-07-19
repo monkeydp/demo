@@ -1,15 +1,19 @@
 <template>
     <div class="hello">
         <h1>{{ msg }}</h1>
-        <div>
-            <button @click="getPersonTest">Got person</button>
-            {{gotPerson}}
-        </div>
-        <br/>
-        <div>
-            <button @click="updatePersonAndGetTest">Updated person</button>
-            {{updatedPerson}}
-        </div>
+        <el-row>
+            <el-col :span="8">
+                &nbsp;
+            </el-col>
+            <el-col :span="8">
+                <el-form v-for="value, key in person">
+                    <el-form-item :label="key">
+                        <el-input v-model="person[key]"></el-input>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+        </el-row>
+        <el-button type="primary" @click="handleUpdatePersonAndGet">更新</el-button>
     </div>
 </template>
 
@@ -25,37 +29,36 @@
         },
         data() {
             return {
-                gotPerson: null,
-                updatedPerson: null,
+                person: {},
             }
         },
         methods: {
             getPerson() {
-                return this.$server.get({
+                return this.$server.myserver.get({
                     path: "/person/get",
                     contentType: MediaType.PROTOBUF,
                 })
             },
             updatePersonAndGet(person) {
-                return this.$server.put({
+                return this.$server.myserver.put({
                     path: "/person/update-and-get",
                     data: person,
                     contentType: MediaType.PROTOBUF,
                 })
             },
-            getPersonTest() {
-                this.getPerson()
+            handleUpdatePersonAndGet() {
+                this.updatePersonAndGet(this.person)
                     .then(person => {
-                        this.gotPerson = person
-                    })
-            },
-            updatePersonAndGetTest() {
-                let person = Person.create({name: "iPotato", age: 37})
-                this.updatePersonAndGet(person)
-                    .then(data => {
-                        this.updatedPerson = data
+                        this.person = person
+                        this.$message.success("更新成功")
                     })
             }
+        },
+        created() {
+            this.getPerson()
+                .then(person => {
+                    this.person = person
+                })
         }
     }
 </script>
