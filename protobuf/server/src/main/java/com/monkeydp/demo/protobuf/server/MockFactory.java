@@ -11,6 +11,7 @@ public class MockFactory {
         return Person.newBuilder()
                      .setName("iPotato")
                      .setAge(24)
+                     .setUpdatedAt(System.currentTimeMillis())
                      .build();
     }
 }

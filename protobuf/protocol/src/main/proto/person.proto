@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package com.monkeydp.demo.protobuf.protocol;
 
-message Person{
+message Person {
     string name = 1;
     int32 age = 2;
+    int64 updatedAt = 3;
 }

@@ -40,7 +40,6 @@
                 return this.$api.person.updateAndGet(this.person)
                     .then(person => {
                         this.person = person
-                        this.$message.success("更新成功")
                     })
             }
         },

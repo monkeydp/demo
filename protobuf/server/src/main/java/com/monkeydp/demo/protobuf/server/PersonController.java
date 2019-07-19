@@ -20,7 +20,9 @@ public class PersonController {
 
     @PutMapping(value = "update")
     public void update(@RequestBody Person person) {
-        this.person = person;
+        this.person = person.toBuilder()
+                            .setUpdatedAt(System.currentTimeMillis())
+                            .build();
     }
 
     @PutMapping(value = "update-and-get")
