@@ -36,7 +36,7 @@ export class Server {
 
     constructor(
         config = {
-            server: {
+            base: {
                 host: null,
                 port: null,
             },
@@ -48,7 +48,7 @@ export class Server {
         config.default = _.merge(config.default, this.#DEFAULT_CONFIG)
         this.#config = config
 
-        this.#serverConfig = new ServerConfig(this.#config.server)
+        this.#serverConfig = new ServerBaseConfig(this.#config.base)
         this.#dataEncoder = new DataEncoder()
         this.#dataDecoder = new DataDecoder(this.#config.dataDecoder)
         this.#axios = Axios.create()
@@ -189,7 +189,7 @@ class DataDecoder {
     }
 }
 
-class ServerConfig {
+class ServerBaseConfig {
     name
     host
     port

@@ -1,23 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Server from './global/server';
+import Api from './global/api';
 import VueLodash from 'vue-lodash'
-import ProtoRoot from './generated/js/proto'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-let config = {
-    server: {
-        name: 'myserver',
-        host: 'localhost',
-        port: '8080',
-    },
-    dataDecoder: {
-        protoRoot: ProtoRoot,
-    }
-}
-
-Vue.use(Server, config)
+Vue.use(Api)
 Vue.use(VueLodash)
 Vue.use(ElementUI)
 

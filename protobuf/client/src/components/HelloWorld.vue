@@ -6,22 +6,19 @@
                 &nbsp;
             </el-col>
             <el-col :span="8">
-                <el-form v-for="value, key in person">
+                <el-form v-for="(value, key) in person" :key="key">
                     <el-form-item :label="key">
                         <el-input v-model="person[key]"></el-input>
                     </el-form-item>
                 </el-form>
             </el-col>
         </el-row>
-        <el-button type="primary" @click="handleUpdatePersonAndGet">更新</el-button>
+        <el-button type="primary" @click="updatePersonAndGet">更新</el-button>
     </div>
 </template>
 
 <script>
-    import ProtoRoot from '../generated/js/proto'
-    import {MediaType} from '../js/Server'
 
-    let Person = ProtoRoot.com.monkeydp.demo.protobuf.protocol.Person
 
     export default {
         props: {
@@ -34,20 +31,13 @@
         },
         methods: {
             getPerson() {
-                return this.$server.myserver.get({
-                    path: "/person/get",
-                    contentType: MediaType.PROTOBUF,
-                })
+                this.$api.person.get()
+                    .then(person => {
+                        this.person = person
+                    })
             },
-            updatePersonAndGet(person) {
-                return this.$server.myserver.put({
-                    path: "/person/update-and-get",
-                    data: person,
-                    contentType: MediaType.PROTOBUF,
-                })
-            },
-            handleUpdatePersonAndGet() {
-                this.updatePersonAndGet(this.person)
+            updatePersonAndGet() {
+                return this.$api.person.updateAndGet(this.person)
                     .then(person => {
                         this.person = person
                         this.$message.success("更新成功")
@@ -56,10 +46,7 @@
         },
         created() {
             this.getPerson()
-                .then(person => {
-                    this.person = person
-                })
-        }
+        },
     }
 </script>
 
