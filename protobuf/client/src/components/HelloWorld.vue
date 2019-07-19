@@ -15,6 +15,7 @@
 
 <script>
     import ProtoRoot from '../generated/js/proto'
+    import {MediaType} from '../js/Server'
 
     let Person = ProtoRoot.com.monkeydp.demo.protobuf.protocol.Person
 
@@ -30,10 +31,17 @@
         },
         methods: {
             getPerson() {
-                return this.$server.get("/person/get")
+                return this.$server.get({
+                    path: "/person/get",
+                    contentType: MediaType.PROTOBUF,
+                })
             },
             updatePersonAndGet(person) {
-                return this.$server.put("/person/update-and-get", person)
+                return this.$server.put({
+                    path: "/person/update-and-get",
+                    data: person,
+                    contentType: MediaType.PROTOBUF,
+                })
             },
             getPersonTest() {
                 this.getPerson()

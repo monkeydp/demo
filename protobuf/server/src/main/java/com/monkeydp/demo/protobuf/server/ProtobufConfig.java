@@ -15,7 +15,7 @@ import java.util.Collections;
 public class ProtobufConfig {
 
     /**
-     * Protobuf 序列化
+     * Protobuf Http Message 转换器
      *
      * @return
      */
@@ -25,13 +25,16 @@ public class ProtobufConfig {
     }
 
     /**
-     * Protobuf 反序列化
+     * RestTemplate 中添加转换器
      *
      * @param protobufHttpMessageConverter
      * @return
      */
     @Bean
-    RestTemplate restTemplate(ProtobufHttpMessageConverter protobufHttpMessageConverter) {
-        return new RestTemplate(Collections.singletonList(protobufHttpMessageConverter));
+    RestTemplate restTemplate(ProtobufHttpMessageConverter protobufHttpMessageConverter
+    ) {
+        return new RestTemplate(Collections.singletonList(
+                protobufHttpMessageConverter
+        ));
     }
 }
