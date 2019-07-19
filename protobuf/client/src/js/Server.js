@@ -16,8 +16,6 @@ export class MediaType {
 export class ProtocolType {
     static HTTP = 'http'
     static HTTPS = 'https'
-    static WS = 'ws'
-    static WSS = 'wss'
 }
 
 export class Server {
