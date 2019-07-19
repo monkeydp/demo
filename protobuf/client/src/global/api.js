@@ -1,4 +1,4 @@
-import Servers from './servers'
+import Servers from './Servers'
 import {MediaType} from '../js/Server'
 
 export default {
@@ -10,8 +10,8 @@ export default {
     }
 }
 
-function registerAllApis(apis) {
-    apis['person'] = new PersonApi(Servers.serverA)
+function registerAllApis(api) {
+    api['person'] = new PersonApi(Servers.SERVER_A)
 }
 
 class PersonApi {

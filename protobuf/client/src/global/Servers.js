@@ -2,7 +2,7 @@ import {Server} from '../js/Server'
 import ProtoRoot from "../generated/js/proto"
 
 export default class Servers {
-    static serverA = new Server({
+    static SERVER_A = new Server({
         base: {
             host: 'localhost',
             port: '8080',
@@ -12,7 +12,7 @@ export default class Servers {
         }
     })
     // never used
-    static serverB = new Server({
+    static SERVER_B = new Server({
         base: {
             host: 'localhost',
             port: '8111',
