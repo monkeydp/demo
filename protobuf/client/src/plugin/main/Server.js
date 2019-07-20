@@ -19,7 +19,7 @@ export class ProtocolType {
     static HTTPS = 'https'
 }
 
-export class ServerFacade {
+export class Server {
     #DEFAULT_CONFIG = {
         request: {
             contentType: MediaType.JSON,

@@ -1,5 +1,5 @@
 import Server from './Server'
-import {MediaType} from '../plugin/facade/ServerFacade'
+import {MediaType} from '../plugin/main/Server'
 import StringUtil from '../plugin/util/StringUtil'
 
 export default {
