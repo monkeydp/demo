@@ -72,7 +72,7 @@ class Chatter {
 }
 
 {
-    let chatter = new Chatter("http://localhost:8080/ws")
+    let chatter = new Chatter("http://localhost:8080")
     chatter.connect()
 
     setTimeout(_ => {
