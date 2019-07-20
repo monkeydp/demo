@@ -1,5 +1,6 @@
 import Axios from 'axios'
 import _ from 'lodash'
+import StringUtil from '../util/StringUtil'
 
 class Method {
     static GET = 'get'
@@ -18,7 +19,7 @@ export class ProtocolType {
     static HTTPS = 'https'
 }
 
-export class Server {
+export class ServerFacade {
     #DEFAULT_CONFIG = {
         request: {
             contentType: MediaType.JSON,

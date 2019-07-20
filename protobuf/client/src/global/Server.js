@@ -1,16 +1,16 @@
-import {Server} from '../tool/Server'
+import {ServerFacade} from '../plugin/facade/ServerFacade'
 import Config from './Config'
 import ProtoRoot from "../generated/js/proto"
 
-export default class Servers {
-    static SERVER_A = new Server({
+export default class Server {
+    static SERVER_A = new ServerFacade({
         base: Config.SERVER.SERVER_A,
         dataDecoder: {
             protoRoot: ProtoRoot,
         }
     })
     // never used
-    static SERVER_B = new Server({
+    static SERVER_B = new ServerFacade({
         base: Config.SERVER.SERVER_B,
         dataDecoder: {
             protoRoot: ProtoRoot,
