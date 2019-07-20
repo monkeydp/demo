@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import _ from 'lodash'
 import StringUtil from '../util/StringUtil'
+import ArrayBufferUtil from "../util/ArrayBufferUtil";
 
 class Method {
     static GET = 'get'
@@ -175,8 +176,7 @@ class DataDecoder {
         }
         let messageClass = this._loadMessageClass(messageClassName)
         if (buffer instanceof ArrayBuffer) {
-            let uint8Array = new Uint8Array(buffer)
-            return messageClass.decode(uint8Array)
+            return ArrayBufferUtil.toProtobufMessage(buffer, messageClass)
         }
         throw new Error('Unprocessed response data type: ' + buffer.constructor.name)
     }
