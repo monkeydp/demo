@@ -1,4 +1,4 @@
-import {Server} from '../js/Server'
+import {Server} from '../tool/Server'
 import ProtoRoot from "../generated/js/proto"
 
 export default class Servers {

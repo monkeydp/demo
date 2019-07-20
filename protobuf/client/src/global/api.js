@@ -1,5 +1,6 @@
 import Servers from './Servers'
-import {MediaType} from '../js/Server'
+import {MediaType} from '../tool/Server'
+import StringUtil from '../tool/StringUtil'
 
 export default {
     install(Vue) {
@@ -12,12 +13,6 @@ export default {
 
 function registerAllApis(api) {
     api['person'] = new PersonApi(Servers.SERVER_A)
-}
-
-class StringUtil {
-    static isEmpty(str) {
-        return str == null || str == ''
-    }
 }
 
 class BaseApi {

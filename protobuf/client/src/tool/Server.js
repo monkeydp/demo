@@ -149,6 +149,9 @@ class DataDecoder {
 
     decodeData(resp) {
         let respContentType = resp.headers['content-type']
+        if (StringUtil.isEmpty(respContentType)) {
+            return resp.data
+        }
         switch (respContentType) {
             case MediaType.JSON:
                 return this._decodeJsonData(resp)
