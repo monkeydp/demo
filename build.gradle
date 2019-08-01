@@ -38,5 +38,7 @@ subprojects { project ->
         implementation "org.jetbrains:annotations:${depVersion().jetbrains.annotations}"
         // guava
         implementation "com.google.guava:guava:${depVersion().google.guava}"
+        // commons-lang3
+        implementation "org.apache.commons:commons-lang3"
     }
 }
