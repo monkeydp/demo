@@ -12,7 +12,7 @@ import java.net.Socket;
  * @author iPotato
  * @date 2019/8/1
  */
-public class ClientApp {
+public class SocketClientApp {
 
     private static final String SERVER_HOST = "localhost";
     private static final int SERVER_PORT = 8080;

@@ -18,13 +18,13 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * @date 2019/8/1
  */
 @Slf4j
-public class ServerApp {
+public class SocketServerApp {
 
     private static final int PORT = 8080;
 
     public static void main(String[] args) {
         System.out.println("Start server app....");
-        ServerApp app = new ServerApp();
+        SocketServerApp app = new SocketServerApp();
         app.init();
     }
 
