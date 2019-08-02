@@ -23,7 +23,7 @@ public class SocketServerApp {
     private static final int PORT = 8080;
 
     public static void main(String[] args) {
-        System.out.println("Start server app....");
+        System.out.println("Start server app...");
         SocketServerApp app = new SocketServerApp();
         app.init();
     }
@@ -68,7 +68,7 @@ public class SocketServerApp {
                 System.out.println(String.format("\n%s: %s", client.getRemoteSocketAddress(), in.readUTF()));
 
                 // # Send message to client
-                System.out.println("Please entry: \t");
+                System.out.print("Please entry: ");
                 // ## Entry by keyboard
                 String message = new BufferedReader(new InputStreamReader(System.in)).readLine();
                 out.writeUTF(message);

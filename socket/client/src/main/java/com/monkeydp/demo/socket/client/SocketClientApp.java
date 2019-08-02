@@ -25,6 +25,12 @@ public class SocketClientApp {
     @SneakyThrows
     public static void main(String[] args) {
         System.out.println("Start client app...");
+        SocketClientApp app = new SocketClientApp();
+        app.init();
+    }
+
+    @SneakyThrows
+    private void init() {
         while (true) {
             Socket server = new Socket(SERVER_HOST, SERVER_PORT);
 
@@ -33,7 +39,7 @@ public class SocketClientApp {
                     DataOutputStream out = new DataOutputStream(server.getOutputStream());
             ) {
                 // # Send message to server
-                System.out.println("Please entry: \t");
+                System.out.print("Please entry: ");
                 // ## Entry by keyboard
                 String outputMessage = new BufferedReader(new InputStreamReader(System.in)).readLine();
                 out.writeUTF(outputMessage);
@@ -42,7 +48,7 @@ public class SocketClientApp {
                 String inputMessage = in.readUTF();
                 System.out.println(String.format("\n%s: %s", server.getRemoteSocketAddress(), inputMessage));
                 if (TERMINATOR.equals(inputMessage)) {
-                    System.out.println("Stop client app..");
+                    System.out.println("Stop client app...");
                     Thread.sleep(500);
                     break;
                 }
